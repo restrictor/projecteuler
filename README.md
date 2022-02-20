@@ -101,3 +101,13 @@ and enjoyment of anyone with an interest in the fascinating world of mathematics
 048  Self powers\
 049  Prime permutations\
 050  Consecutive prime sum
+051  Prime digit replacements\
+052  Permuted multiples\
+053  Combinatoric selections\
+054  Poker hands\
+055  Lychrel numbers\
+056  Powerful digit sum\
+057  Square root convergents\
+058  Spiral primes\
+059  XOR decryption\
+060  Prime pair sets

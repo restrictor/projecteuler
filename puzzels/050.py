@@ -48,6 +48,5 @@ get_longest_prime_is_consecutive_prime_sum(n_bound)
 end = perf_counter()
 print(f"Runtime of the program is {end - start:.10f}")
 
-
 # [[997651, 3, 543]]
 # Runtime of the program is 0.0817005000

@@ -74,3 +74,39 @@ def number_of_prime_factors(number: int) -> int:
         i += 1
     return len(factors) + 1
 
+
+# implementation taken from: https://rosettacode.org/wiki/Miller%E2%80%93Rabin_primality_test#Python
+def try_composite(a: int, d: int, n: int, s: int) -> bool:
+    if pow(a, d, n) == 1:
+        return False
+    for i in range(s):
+        if pow(a, 2 ** i * d, n) == n - 1:
+            return False
+    return True
+
+
+# implementation taken from: https://rosettacode.org/wiki/Miller%E2%80%93Rabin_primality_test#Python
+def is_prime_341_trillion(n: int, small_list: list) -> bool:
+    if n in small_list:
+        return True
+    if any((n % p) == 0 for p in small_list) or n in (0, 1):
+        return False
+    if n >= 341550071728321:
+        print(f"WARNING: the primality of {n} was not tested (number too large)")
+    d, s = n - 1, 0
+    while not d % 2:
+        d, s = d >> 1, s + 1
+    if n < 1373653:
+        return not any(try_composite(a, d, n, s) for a in (2, 3))
+    if n < 25326001:
+        return not any(try_composite(a, d, n, s) for a in (2, 3, 5))
+    if n < 118670087467:
+        if n == 3215031751:
+            return False
+        return not any(try_composite(a, d, n, s) for a in (2, 3, 5, 7))
+    if n < 2152302898747:
+        return not any(try_composite(a, d, n, s) for a in (2, 3, 5, 7, 11))
+    if n < 3474749660383:
+        return not any(try_composite(a, d, n, s) for a in (2, 3, 5, 7, 11, 13))
+    if n < 341550071728321:
+        return not any(try_composite(a, d, n, s) for a in (2, 3, 5, 7, 11, 13, 17))
