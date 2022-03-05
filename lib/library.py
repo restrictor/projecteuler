@@ -1,5 +1,6 @@
 from math import isqrt, gcd, sqrt
 from typing import Iterator
+from fractions import Fraction
 
 
 # solution for problem 003
@@ -110,3 +111,45 @@ def is_prime_341_trillion(n: int, small_list: list) -> bool:
         return not any(try_composite(a, d, n, s) for a in (2, 3, 5, 7, 11, 13))
     if n < 341550071728321:
         return not any(try_composite(a, d, n, s) for a in (2, 3, 5, 7, 11, 13, 17))
+
+
+# solution for problem 063
+def is_perfect_n_cube(number: int, power: int) -> bool:
+    return int(round(abs(number) ** (1. / power))) ** power == abs(number)
+
+
+# https://en.wikipedia.org/wiki/Periodic_continued_fraction#cite_note-7
+# source Period of the Continued Fraction of √n by Marius Beceanu
+def root_continued_fraction(s: float, ii: int) -> list:
+    m0, d0, a0 = 0, 1, int(s)
+    i, m, d, a, terms = 0, m0, d0, a0, [a0]
+    while True:
+        m = d * a - m
+        d = (s ** 2 - m ** 2) / d
+        a = int((s + m) / d)
+        terms.append(a)
+        i += 1
+        if a == 2 * s or i == ii:
+            break
+    return terms
+
+
+# solution for problem 065
+def continued_fraction_n(terms: list) -> Fraction:
+    total = Fraction(1, terms[-1])
+    for term in range(1, len(terms) - 1):
+        total = Fraction(1, terms[len(terms) - term - 1] + total)
+    return Fraction(terms[0], 1) + total
+
+
+# solution for problem 070
+def totient_function(n: int) -> int:
+    result = n
+    for i in range(2, int(n**0.5 + 1)):
+        if n % i == 0:
+            while n % i == 0:
+                n = n / i
+            result = result - result / i
+    if n > 1:
+        result = result - result / n
+    return int(result)
