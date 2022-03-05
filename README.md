@@ -110,4 +110,14 @@ and enjoyment of anyone with an interest in the fascinating world of mathematics
 057  Square root convergents\
 058  Spiral primes\
 059  XOR decryption\
-060  Prime pair sets
+060  Prime pair sets\
+061  Cyclical figurate numbers\
+062  Cubic permutations\
+063  Powerful digit counts\
+064  Odd period square roots\
+065  Convergents of e\
+066  Diophantine equation\
+067  Maximum path sum II\
+068  Magic 5-gon ring\
+069  Totient maximum\
+070  Totient permutation
