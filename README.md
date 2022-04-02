@@ -120,4 +120,14 @@ and enjoyment of anyone with an interest in the fascinating world of mathematics
 067  Maximum path sum II\
 068  Magic 5-gon ring\
 069  Totient maximum\
-070  Totient permutation
+070  Totient permutation\
+071  Ordered fractions\
+072  Counting fractions\
+073  Counting fractions in a range\
+074  Digit factorial chains\
+075  Singular integer right triangles\
+076  Counting summations\
+077  Prime summations\
+078  Coin partitions\
+079  Passcode derivation\
+080  Square root digital expansion
