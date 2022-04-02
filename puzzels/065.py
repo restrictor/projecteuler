@@ -36,7 +36,7 @@ def continued_fraction_n(terms: list) -> Fraction:
 
 def get_sum_digits_numerator_100_continued_fraction_term_of_e(nth_term: int) -> None:
     e = N(E, 2*nth_term)
-    terms = [int(fraction) for fraction in root_continued_fraction(e, 99)]
+    terms = [int(fraction) for fraction in root_continued_fraction(e, nth_term-1)]
     print(nth_term, sum(map(int, str(continued_fraction_n(terms[:nth_term]).numerator))),
           continued_fraction_n(terms[:nth_term]))
 

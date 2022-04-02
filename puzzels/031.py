@@ -16,22 +16,21 @@ from time import perf_counter
 start = perf_counter()
 
 
-def count_coin_sums(coins: list, coin_sum: int) -> int:
+def times_to_make_a_number(values: list, total_sum: int) -> int:
+    solution = [1] + [0] * total_sum
+    for i in range(0, len(values)):
 
-    solution = [1] + [0] * coin_sum
-    for i in range(0, len(coins)):
-
-        # first we only update the solution[coin[i]] for coin[i]
-        # next we add solution[j - coin[i]] to solution[j]
-        # so add the options to come with that coin to the value
-        for j in range(coins[i], coin_sum + 1):
-            solution[j] += solution[j - coins[i]]
-    return solution[coin_sum]
+        # first we only update the solution[values[i]] for values[i]
+        # next we add solution[j - values[i]] to solution[j]
+        # so add the options to come with that coin to that value
+        for j in range(values[i], total_sum + 1):
+            solution[j] += solution[j - values[i]]
+    return solution[total_sum]
 
 
 coins_list = [1, 2, 5, 10, 20, 50, 100, 200]
 amount = 200
-print(count_coin_sums(coins_list, amount))
+print(times_to_make_a_number(coins_list, amount))
 
 end = perf_counter()
 print(f"Runtime of the program is {end - start:.10f}")

@@ -1,6 +1,7 @@
 from math import isqrt, gcd, sqrt
 from typing import Iterator
 from fractions import Fraction
+from itertools import compress
 
 
 # solution for problem 003
@@ -33,6 +34,19 @@ def proper_divisors(n: int) -> Iterator[int]:
             yield i
             if i < n / i:
                 yield n / i
+
+
+# solution for problem 031
+def times_to_make_a_number(values: list, total_sum: int) -> int:
+    solution = [1] + [0] * total_sum
+    for i in range(0, len(values)):
+
+        # first we only update the solution[values[i]] for values[i]
+        # next we add solution[j - values[i]] to solution[j]
+        # so add the options to come with that coin to that value
+        for j in range(values[i], total_sum + 1):
+            solution[j] += solution[j - values[i]]
+    return solution[total_sum]
 
 
 # solution for problem 034
@@ -153,3 +167,51 @@ def totient_function(n: int) -> int:
     if n > 1:
         result = result - result / n
     return int(result)
+
+
+# solution for problem 073
+def sieve_coprimes(n: int) -> list:
+    s = [True] * n
+    for i in range(2, n):
+        if n % i == 0 and s[i - 1]:
+            s[i - 1::i] = [False] * len(s[i - 1::i])
+            s[int(n / i) - 1::int(n / i)] = [False] * len(s[int(n / i) - 1::int(n / i)])
+    return list(compress(list(range(1, n)), s))
+
+
+# solution for problem 075
+def primitive_triples(x: int, y: int, z: int, cir: int = 12) -> list:
+
+    x1 = -x + 2 * y + 2 * z
+    y1 = -2 * x + y + 2 * z
+    z1 = -2 * x + 2 * y + 3 * z
+
+    x2 = x + 2 * y + 2 * z
+    y2 = 2 * x + y + 2 * z
+    z2 = 2 * x + 2 * y + 3 * z
+
+    x3 = x - 2 * y + 2 * z
+    y3 = 2 * x - y + 2 * z
+    z3 = 2 * x - 2 * y + 3 * z
+
+    if x1 + y1 + z1 > cir and x2 + y2 + z2 > cir and x3 + y3 + z3 > cir:
+        return []
+    if x1 + y1 + z1 > cir and x2 + y2 + z2 > cir:
+        return [[x3, y3, z3]] + primitive_triples(x3, y3, z3, cir)
+    if x2 + y2 + z2 > cir and x3 + y3 + z3 > cir:
+        return [[x1, y1, z1]] + primitive_triples(x1, y1, z1, cir)
+    if x1 + y1 + z1 > cir and x3 + y3 + z3 > cir:
+        return [[x2, y2, z2]] + primitive_triples(x2, y2, z2, cir)
+    if x1 + y1 + z1 > cir:
+        return [[x2, y2, z2]] + primitive_triples(x2, y2, z2, cir) + \
+               [[x3, y3, z3]] + primitive_triples(x3, y3, z3, cir)
+    if x2 + y2 + z2 > cir:
+        return [[x1, y1, z1]] + primitive_triples(x1, y1, z1, cir) + \
+               [[x3, y3, z3]] + primitive_triples(x3, y3, z3, cir)
+    if x3 + y3 + z3 > cir:
+        return [[x1, y1, z1]] + primitive_triples(x1, y1, z1, cir) + \
+               [[x2, y2, z2]] + primitive_triples(x2, y2, z2, cir)
+
+    return [[x1, y1, z1]] + primitive_triples(x1, y1, z1, cir) + \
+           [[x2, y2, z2]] + primitive_triples(x2, y2, z2, cir) + \
+           [[x3, y3, z3]] + primitive_triples(x3, y3, z3, cir)
