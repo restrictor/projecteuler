@@ -215,3 +215,13 @@ def primitive_triples(x: int, y: int, z: int, cir: int = 12) -> list:
     return [[x1, y1, z1]] + primitive_triples(x1, y1, z1, cir) + \
            [[x2, y2, z2]] + primitive_triples(x2, y2, z2, cir) + \
            [[x3, y3, z3]] + primitive_triples(x3, y3, z3, cir)
+
+
+# solution for problem 075
+def add_non_primitive_triples(prim_triples: list, bound: int) -> list:
+    for t in list(prim_triples):
+        i = 2
+        while sum(t) * i < bound:
+            prim_triples.append([x * i for x in t])
+            i += 1
+    return prim_triples

@@ -130,4 +130,14 @@ and enjoyment of anyone with an interest in the fascinating world of mathematics
 077  Prime summations\
 078  Coin partitions\
 079  Passcode derivation\
-080  Square root digital expansion
+080  Square root digital expansion\
+081  Path sum: two ways\
+082  Path sum: three ways\
+083  Path sum: four ways\
+084  Monopoly odds\
+085  Counting rectangles\
+086  Cuboid route\
+087  Prime power triples\
+088  Product-sum numbers\
+089  Roman numerals\
+090  Cube digit pairs
